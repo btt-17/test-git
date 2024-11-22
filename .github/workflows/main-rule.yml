@@ -2,8 +2,7 @@ name: Prevent Push to Restricted Branch
 
 on:
   push:
-    branches:
-      - name # Replace with the name of your restricted branch
+    branches: [ main ] # Replace with the name of your restricted branch
 
 jobs:
   prevent-push:
