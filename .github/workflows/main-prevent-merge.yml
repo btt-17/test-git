@@ -1,0 +1,16 @@
+name: Prevent Push to dev
+
+on:
+  push:
+    branches:
+      - dev # Replace with the name of your restricted branch
+
+jobs:
+  prevent-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Block Push to dev
+        run: |
+          echo "Pushes to the dev are not allowed."
+          exit 1
