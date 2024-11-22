@@ -16,7 +16,7 @@ jobs:
       - name: Check Branch Name
         id: branch-check
         run: |
-          RESTRICTED_BRANCH="restricted-branch" # Replace with your restricted branch name
+          RESTRICTED_BRANCH="dev" # Replace with your restricted branch name
           if [ "${{ github.event.inputs.branch_name }}" = "$RESTRICTED_BRANCH" ]; then
             echo "Branch '${{ github.event.inputs.branch_name }}' is restricted. Pushes are not allowed."
             exit 1
