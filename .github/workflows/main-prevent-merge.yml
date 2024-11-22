@@ -1,0 +1,30 @@
+name: Prevent Push Workflow (Manual Trigger)
+
+on:
+  workflow_dispatch: # Allows manual triggering of this workflow
+    inputs:
+      dev:
+        description: "dev"
+        required: true
+        default: dev
+
+jobs:
+  prevent-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Branch Name
+        id: branch-check
+        run: |
+          RESTRICTED_BRANCH="dev" # Replace with your restricted branch name
+          if [ "${{ github.event.inputs.branch_name }}" = "$RESTRICTED_BRANCH" ]; then
+            echo "Branch '${{ github.event.inputs.branch_name }}' is restricted. Pushes are not allowed."
+            exit 1
+          else
+            echo "Branch '${{ github.event.inputs.branch_name }}' is not restricted."
+          fi
+
+      - name: Perform Safe Operations
+        if: ${{ steps.branch-check.outcome == 'success' }}
+        run: |
+          echo "Proceeding with operations on branch '${{ github.event.inputs.branch_name }}'."
