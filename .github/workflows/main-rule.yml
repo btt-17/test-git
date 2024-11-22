@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Block Push to dev
+      - name: Block Push to main
         run: |
-          echo "Pushes to the dev are not allowed."
+          echo "Pushes to the main are not allowed."
           exit 1
