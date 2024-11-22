@@ -10,8 +10,7 @@ jobs:
 
     steps:
       - name: Block Push to main
+        if: github.ref_name == 'main'
         run: |
-          if [ "${{ github.event.pull_request.head.ref }}" == "main" ]; then
            echo "Merges to main are only allowed from the PR."
            exit 1
-          fi 
